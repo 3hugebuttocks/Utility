@@ -1,4 +1,4 @@
-package com.example.caoyouqiang.utility;
+package com.example.utility;
 
 import org.junit.Test;
 
