@@ -12,11 +12,56 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            //移除无用的资源文件
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions "api", "mode"
+
+    //构建不同产品
+    productFlavors{
+        demo{
+            dimension "mode"
+            applicationId "com.utility.demo"
+            applicationIdSuffix ".demo"
+            versionNameSuffix "-demo"
+            buildConfigField 'String','v_name',"\"Demo Version\""
+        }
+
+        full{
+            dimension "mode"
+            applicationId "com.utility.full"
+            applicationIdSuffix ".full"
+            versionNameSuffix "-full"
+            buildConfigField 'String','v_name',"\"Full Version\""
+        }
+
+        minApi18{
+            dimension "api"
+            minSdkVersion '18'
+            versionCode 3000 + android.defaultConfig.versionCode
+            versionNameSuffix "-minApi18"
+        }
+        minApi16{
+            dimension "api"
+            minSdkVersion '16'
+            versionCode 10000  + android.defaultConfig.versionCode
+            versionNameSuffix "-minApi18"
+        }
+    }
+
+    //过滤变体
+    variantFilter {variant ->
+        def names = variant.flavors*.name
+        if (names.contains("minApi16")){
+            setIgnore(true)
+        }
+    }
 }
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])

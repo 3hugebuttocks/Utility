@@ -2,10 +2,7 @@ package com.example.utility;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
-import com.example.utility.common.ReleaseTree;
-import com.example.utility.common.ThreadInfoDebugTree;
 
 import timber.log.Timber;
 
@@ -19,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
 		Timber.tag("Leo");
 		Timber.d("fuck codes...");
 
+		Timber.tag("Leo");
 		//Timber.d(new Exception("aaa"));
 	}
 }
