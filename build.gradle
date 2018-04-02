@@ -74,7 +74,15 @@ ext{
                       'android': 'io.reactivex:rxandroid:2.0.2',
                       'preferences': 'com.f2prateek.rx.preferences:rx-preferences:2.0.0-RC3',
             ],
-            'timber': 'com.jakewharton.timber:timber:4.7.0'
+            'timber': 'com.jakewharton.timber:timber:4.7.0',
+            'bugly':[
+                    'sdk': 'com.tencent.bugly:crashreport:latest.release',
+                    'ndk': 'com.tencent.bugly:nativecrashreport:latest.release',
+            ],
+            'butterKnife': [
+                    'runtime': "com.jakewharton:butterknife:${versions.butterKnife}",
+                    'compiler': "com.jakewharton:butterknife-compiler:${versions.butterKnife}",
+            ],
 
     ]
 }
