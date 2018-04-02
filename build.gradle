@@ -25,3 +25,57 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext{
+
+    versions = [
+            compileSdk: 26,
+            buildTools: '26.0.1',
+            minSdk: 19,
+            targetSdk: 25,
+            supportLibrary: '26.1.0',
+            dagger: '1.2.5',
+            okhttp: '3.8.1',
+            retrofit: '2.4.0',
+            butterKnife: '8.8.1',
+            leakCanary: '1.5.1',
+            espresso: '2.2.2',
+    ]
+
+    supportDependencies = [
+            'support': [
+                    'annotations': "com.android.support:support-annotations:${versions.supportLibrary}",
+                    'v4': "com.android.support:support-v4:${versions.supportLibrary}",
+                    'appCompat': "com.android.support:appcompat-v7:${versions.supportLibrary}",
+                    'design': "com.android.support:design:${versions.supportLibrary}",
+                    'recyclerView': "com.android.support:recyclerview-v7:${versions.supportLibrary}",
+            ],
+            'dagger': [
+                    'runtime': "com.squareup.dagger:dagger:${versions.dagger}",
+                    'compiler': "com.squareup.dagger:dagger-compiler:${versions.dagger}",
+            ],
+            'okhttp': [
+                    'core': "com.squareup.okhttp3:okhttp:${versions.okhttp}",
+                    'logger': "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}",
+            ],
+            'okio': 'com.squareup.okio:okio:1.13.0',
+            'picasso': 'com.squareup.picasso:picasso:2.5.2',
+            'retrofit': [
+                    'core': "com.squareup.retrofit2:retrofit:${versions.retrofit}",
+                    'mock': "com.squareup.retrofit2:retrofit-mock:${versions.retrofit}",
+                    'moshi': "com.squareup.retrofit2:converter-moshi:${versions.retrofit}",
+                    'rxjava': "com.squareup.retrofit2:adapter-rxjava:${versions.retrofit}",
+            ],
+            'leakCanary': [
+                    'real': "com.squareup.leakcanary:leakcanary-android:${versions.leakCanary}",
+                    'noOp': "com.squareup.leakcanary:leakcanary-android-no-op:${versions.leakCanary}",
+            ],
+            'rx': [
+                      'core': 'io.reactivex.rxjava2:rxjava:2.1.10',
+                      'android': 'io.reactivex:rxandroid:2.0.2',
+                      'preferences': 'com.f2prateek.rx.preferences:rx-preferences:2.0.0-RC3',
+            ],
+            'timber': 'com.jakewharton.timber:timber:4.7.0'
+
+    ]
+}
