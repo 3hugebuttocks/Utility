@@ -1,4 +1,4 @@
-package com.example.utility.common;
+package com.example.common.timber;
 
 import android.util.Log;
 

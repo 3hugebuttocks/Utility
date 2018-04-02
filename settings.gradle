@@ -1,1 +1,1 @@
-include ':app', ':wyjapplication', ':sjjapplication'
+include ':app', ':wyjapplication', ':sjjapplication', ':common'

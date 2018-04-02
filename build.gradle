@@ -27,7 +27,6 @@ task clean(type: Delete) {
 }
 
 ext{
-
     versions = [
             compileSdk: 26,
             buildTools: '26.0.1',

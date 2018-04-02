@@ -1,6 +1,4 @@
-package com.example.utility.common;
-
-import android.util.Log;
+package com.example.common.timber;
 
 import timber.log.Timber;
 

@@ -75,4 +75,5 @@ dependencies {
     implementation supportDependencies.okhttp.core
     implementation supportDependencies.retrofit.core
     implementation supportDependencies.timber
+    implementation project(':common')
 }

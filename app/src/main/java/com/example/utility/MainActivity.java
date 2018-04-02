@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
 		Timber.tag("Leo");
 		Timber.d("fuck codes...");
 
-		Timber.tag("Leo");
 		//Timber.d(new Exception("aaa"));
 	}
 }
