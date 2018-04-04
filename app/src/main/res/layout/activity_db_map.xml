@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="com.example.utility.databinding.Utils.Keys" />
+        <import type="android.databinding.ObservableMap" />
+        <import type="com.example.utility.databinding.Utils.BindUtils" />
+
+        <variable
+            name="ava"
+            type="com.example.utility.databinding.bean.Avantar"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="更新" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(ava.id)}"
+            android:textColor="@android:color/holo_red_light"
+            android:visibility="@{ ava.id > 0 ? View.VISIBLE : View.GONE }" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{ava.name}"
+            android:textColor="@{ava.id == 0 ? @android:color/holo_red_light : @android:color/holo_blue_light}" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{ava.current}" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" --- " />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{ava.quality[ava.current]}" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="start"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="@={ava.content}" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{BindUtils.displayPassowrdText(ava.content)}"
+                android:textColor="@android:color/holo_blue_bright" />
+
+            <com.example.utility.databinding.view.PhilTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{ava.content}"
+                app:texttoast="@{ava.content}" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

@@ -28,6 +28,7 @@ public class DataBindingActivity extends AppCompatActivity implements View.OnCli
 		binding.setUser(mUser);
 		binding.setAva(mAva);
 
+
 		mBtnChange = findViewById(R.id.btn_change);
 		mBtnChange.setOnClickListener(this);
 

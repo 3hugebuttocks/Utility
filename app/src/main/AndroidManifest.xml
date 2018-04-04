@@ -18,7 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".databinding.DataBindingActivity" />
-        <activity android:name=".databinding.DataBindingListActivity"></activity>
+        <activity android:name=".databinding.DataBindingListActivity" />
+        <activity android:name=".databinding.DataBingdingMapActicity"></activity>
     </application>
 
 </manifest>
