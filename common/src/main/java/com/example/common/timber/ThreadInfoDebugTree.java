@@ -15,9 +15,9 @@ public class ThreadInfoDebugTree extends Timber.DebugTree{
 			long threadId = Thread.currentThread().getId();
 			tag = "<" + threadName + "-" + threadId + ">" + tag;
 
-			StackTraceElement[] stackTrace = new Throwable().getStackTrace();
+			/*StackTraceElement[] stackTrace = new Throwable().getStackTrace();
 			String line = "(Line " + stackTrace[5].getLineNumber() + ")";
-			tag += line;
+			tag += line;*/
 		}
 		super.log(priority, tag, message, t);
 	}

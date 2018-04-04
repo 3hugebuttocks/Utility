@@ -20,6 +20,8 @@ import timber.log.Timber;
  */
 
 public class BindUtils {
+	public BindUtils(){}
+
 	@BindingAdapter({"imageUrl"})
 	public static void loadImage(ImageView view, String u) {
 		RequestOptions options = new RequestOptions()

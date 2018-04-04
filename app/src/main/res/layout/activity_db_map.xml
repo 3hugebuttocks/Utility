@@ -11,6 +11,9 @@
         <variable
             name="ava"
             type="com.example.utility.databinding.bean.Avantar"/>
+        <variable
+            name="util"
+            type="BindUtils" />
     </data>
 
     <LinearLayout
@@ -66,7 +69,8 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="start"/>
+                android:text="start"
+                android:onClick="@{()->util.onMyClick(ava)}"/>
 
             <EditText
                 android:layout_width="match_parent"

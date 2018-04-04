@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.utility.R;
+import com.example.utility.databinding.Utils.BindUtils;
 import com.example.utility.databinding.bean.Avantar;
 
 public class DataBingdingMapActicity extends AppCompatActivity {
@@ -17,6 +18,8 @@ public class DataBingdingMapActicity extends AppCompatActivity {
 
 		final Avantar avantar = new Avantar();
 		dbMapBinding.setAva(avantar);
+		BindUtils utils = new BindUtils();
+		dbMapBinding.setUtil(utils);
 
 		avantar.id.set(0);
 		avantar.name.set("Leo");
