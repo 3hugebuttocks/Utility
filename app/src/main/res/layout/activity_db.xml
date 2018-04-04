@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="user"
-            type="com.example.utility.databinding.User" />
+            type="com.example.utility.databinding.bean.User" />
+        <variable
+            name="ava"
+            type="com.example.utility.databinding.bean.Avantar" />
     </data>
 
     <LinearLayout
@@ -21,6 +25,7 @@
                 android:layout_height="wrap_content"
                 android:text="id:"/>
             <TextView
+                android:id="@+id/id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{user.id}"
@@ -36,6 +41,7 @@
                 android:layout_height="wrap_content"
                 android:text="name:"/>
             <TextView
+                android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{user.name}"
@@ -51,6 +57,7 @@
                 android:layout_height="wrap_content"
                 android:text="blog:"/>
             <TextView
+                android:id="@+id/blog"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{user.blog}"
@@ -62,5 +69,11 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="change"/>
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:imageUrl="@{ava.url}"/>
+
     </LinearLayout>
 </layout>

@@ -7,6 +7,7 @@ import android.widget.Button;
 
 
 import com.example.utility.databinding.DataBindingActivity;
+import com.example.utility.databinding.DataBindingListActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
 	@OnClick(R.id.btn_db)
 	void trendBindingView(){
+		//startActivity(new Intent(this, DataBindingListActivity.class));
 		startActivity(new Intent(this, DataBindingActivity.class));
 	}
 }

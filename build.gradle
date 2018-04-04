@@ -26,19 +26,24 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
+subprojects {
+    task allDeps(type: DependencyReportTask) {}
+}
+
 ext{
     versions = [
-            compileSdk: 26,
-            buildTools: '26.0.1',
+            compileSdk: 27,
+            buildTools: '27.0.2',
             minSdk: 19,
             targetSdk: 25,
-            supportLibrary: '26.1.0',
+            supportLibrary: '27.0.2',
             dagger: '1.2.5',
             okhttp: '3.8.1',
             retrofit: '2.4.0',
             butterKnife: '8.8.1',
             leakCanary: '1.5.1',
             espresso: '2.2.2',
+            glide: '4.6.1'
     ]
 
     supportDependencies = [
@@ -83,6 +88,10 @@ ext{
                     'runtime': "com.jakewharton:butterknife:${versions.butterKnife}",
                     'compiler': "com.jakewharton:butterknife-compiler:${versions.butterKnife}",
             ],
+            'glide': [
+                    'runtime': "com.github.bumptech.glide:glide:${versions.glide}",
+                    'compiler': "com.github.bumptech.glide:compiler:${versions.glide}",
+            ]
 
     ]
 }
