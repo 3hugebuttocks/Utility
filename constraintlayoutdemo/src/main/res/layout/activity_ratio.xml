@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RatioActivity">
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="w,1:3"
+        app:layout_constraintTop_toTopOf="parent" />
+    <!--需要将至少一个约束维度设置为0dp（即MATCH_CONSTRAINT）
+并将属性layout_constraintDimentionRatio设置为给定的比例-->
+
+    <!--如果指定为w，则表示使用h来约束w，一般来说应该使用确定的h或w来约束不确定的w或h，如例子，高度是确定的，则需要约定w，1:3表示宽度是高度的三分之一-->
+
+</android.support.constraint.ConstraintLayout>

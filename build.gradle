@@ -7,7 +7,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.1.0'
         
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -33,7 +33,7 @@ subprojects {
 ext{
     versions = [
             compileSdk: 27,
-            buildTools: '27.0.2',
+            buildTools: '27.0.3',
             minSdk: 19,
             targetSdk: 25,
             supportLibrary: '27.0.2',
@@ -43,7 +43,8 @@ ext{
             butterKnife: '8.8.1',
             leakCanary: '1.5.1',
             espresso: '2.2.2',
-            glide: '4.6.1'
+            glide: '4.6.1',
+            constraintlayout: '1.1.0-beta1'
     ]
 
     supportDependencies = [
@@ -53,6 +54,7 @@ ext{
                     'appCompat': "com.android.support:appcompat-v7:${versions.supportLibrary}",
                     'design': "com.android.support:design:${versions.supportLibrary}",
                     'recyclerView': "com.android.support:recyclerview-v7:${versions.supportLibrary}",
+                    'constraintlayout': "com.android.support.constraint:constraint-layout:${versions.constraintlayout}"
             ],
             'dagger': [
                     'runtime': "com.squareup.dagger:dagger:${versions.dagger}",
