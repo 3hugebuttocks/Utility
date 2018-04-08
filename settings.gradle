@@ -1,1 +1,1 @@
-include ':app', ':wyjapplication', ':sjjapplication', ':common', ':constraintlayoutdemo'
+include ':app', ':wyjapplication', ':sjjapplication', ':common', ':constraintlayoutdemo', ':googlemvvm'

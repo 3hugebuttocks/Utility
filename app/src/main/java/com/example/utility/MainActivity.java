@@ -9,6 +9,7 @@ import android.widget.Button;
 import com.example.utility.databinding.DataBindingActivity;
 import com.example.utility.databinding.DataBindingListActivity;
 import com.example.utility.databinding.DataBingdingMapActicity;
+import com.example.utility.databinding.InverseBindingActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 	void trendBindingView(){
 		//startActivity(new Intent(this, DataBindingListActivity.class));
 		//startActivity(new Intent(this, DataBindingActivity.class));
-		startActivity(new Intent(this, DataBingdingMapActicity.class));
+		//startActivity(new Intent(this, DataBingdingMapActicity.class));
+		startActivity(new Intent(this, InverseBindingActivity.class));
 	}
 }

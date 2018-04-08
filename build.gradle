@@ -44,7 +44,8 @@ ext{
             leakCanary: '1.5.1',
             espresso: '2.2.2',
             glide: '4.6.1',
-            constraintlayout: '1.1.0-beta1'
+            constraintlayout: '1.1.0-beta1',
+            room: '1.0.0'
     ]
 
     supportDependencies = [
@@ -78,7 +79,7 @@ ext{
             ],
             'rx': [
                       'core': 'io.reactivex.rxjava2:rxjava:2.1.10',
-                      'android': 'io.reactivex:rxandroid:2.0.2',
+                      'android': 'io.reactivex.rxjava2:rxandroid:2.0.2',
                       'preferences': 'com.f2prateek.rx.preferences:rx-preferences:2.0.0-RC3',
             ],
             'timber': 'com.jakewharton.timber:timber:4.7.0',
@@ -93,6 +94,10 @@ ext{
             'glide': [
                     'runtime': "com.github.bumptech.glide:glide:${versions.glide}",
                     'compiler': "com.github.bumptech.glide:compiler:${versions.glide}",
+            ],
+            'room': [
+                    'runtime': "android.arch.persistence.room:runtime:${versions.room}",
+                    'compiler': "android.arch.persistence.room:compiler:${versions.room}"
             ]
 
     ]
