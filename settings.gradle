@@ -1,1 +1,1 @@
-include ':app', ':wyjapplication', ':sjjapplication', ':common', ':constraintlayoutdemo', ':constraintlayoutdemo5', ':constraintlayoutdemo', ':constrainlayoutdemo'
+include ':app', ':wyjapplication', ':sjjapplication', ':common', ':constraintlayoutdemo'
