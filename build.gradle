@@ -98,7 +98,8 @@ ext{
             'room': [
                     'runtime': "android.arch.persistence.room:runtime:${versions.room}",
                     'compiler': "android.arch.persistence.room:compiler:${versions.room}"
-            ]
+            ],
+            'guava': 'com.google.guava:guava:24.1-android'
 
     ]
 }
