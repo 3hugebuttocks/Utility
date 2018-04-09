@@ -5,6 +5,8 @@ import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.databinding.Observable;
 import android.databinding.ObservableField;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.example.googlemvvm.data.Task;
 import com.example.googlemvvm.data.source.TasksDataSource;
@@ -70,5 +72,57 @@ public abstract class TaskViewModel extends BaseObservable
 			mTasksRepository.activateTask(task);
 			snackbarText.set(mContext.getResources().getString(R.string.task_marked_active));
 		}
+	}
+
+	@Bindable
+	public boolean isDataAvailable(){
+		return mTaskObservable.get() != null;
+	}
+
+	@Bindable
+	public boolean isDataLoading(){
+		return mIsDataLoading;
+	}
+
+	@Bindable
+	public String getTitleForList(){
+		if (mTaskObservable.get() == null){
+			return "No data";
+		}
+		return mTaskObservable.get().getTitleForList();
+	}
+
+	@Override
+	public void onTaskLoaded(Task task) {
+		mTaskObservable.set(task);
+		mIsDataLoading = false;
+		notifyChange();// For the @Bindable properties
+	}
+
+	@Override
+	public void onDataNotAvailable() {
+		mTaskObservable.set(null);
+		mIsDataLoading = false;
+	}
+
+	public void deleteTask(){
+		if (mTaskObservable.get() != null){
+			mTasksRepository.deleteTask(mTaskObservable.get().getId());
+		}
+	}
+
+	public void onRefresh(){
+		if (mTaskObservable.get() != null){
+			start(mTaskObservable.get().getId());
+		}
+	}
+
+	public String getSnackbarText(){
+		return snackbarText.get();
+	}
+
+	@Nullable
+	protected String getTaskId(){
+		return mTaskObservable.get().getId();
 	}
 }
