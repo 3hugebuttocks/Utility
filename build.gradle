@@ -106,6 +106,7 @@ ext{
             'test': [
                     'robolectric': "org.robolectric:robolectric:${versions.robolectric}",
                     'mockito': "org.mockito:mockito-core:2.+",
+                    'mockito-android': 'org.mockito:mockito-android:2.+',
                     'junit': "junit:junit:${versions.junit}"
             ]
     ]
