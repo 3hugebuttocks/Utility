@@ -1,4 +1,4 @@
-package com.example.googlemvvm;
+package com.example.unitestdemo;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
