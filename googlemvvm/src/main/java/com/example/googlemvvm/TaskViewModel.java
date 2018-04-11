@@ -19,9 +19,11 @@ public abstract class TaskViewModel extends BaseObservable
 	public final ObservableField<String> description = new ObservableField<>();
 	private final ObservableField<Task> mTaskObservable = new ObservableField<>();
 
-	private final TasksRepository mTasksRepository;
-	private Context mContext;
-	private boolean mIsDataLoading;
+    private final TasksRepository mTasksRepository;
+
+    private final Context mContext;
+
+    private boolean mIsDataLoading;
 
 	public TaskViewModel(Context context, TasksRepository tasksRepository){
 		mContext = context.getApplicationContext();

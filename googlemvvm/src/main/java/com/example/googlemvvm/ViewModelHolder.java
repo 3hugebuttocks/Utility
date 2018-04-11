@@ -1,11 +1,10 @@
 package com.example.googlemvvm;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-public class ViewModelHolder<VM> extends Fragment{
+public class ViewModelHolder<VM> extends android.support.v4.app.Fragment{
 	private VM mViewModel;
 
 	public  ViewModelHolder(){}
@@ -22,7 +21,7 @@ public class ViewModelHolder<VM> extends Fragment{
 		setRetainInstance(true);
 	}
 
-	@Nullable public VM getmViewModel(){
+	@Nullable public VM getViewModel(){
 		return mViewModel;
 	}
 

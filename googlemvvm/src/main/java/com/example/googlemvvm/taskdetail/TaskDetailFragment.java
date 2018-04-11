@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.architecture.blueprints.todoapp.taskdetail;
+package com.example.googlemvvm.taskdetail;
 
 import android.databinding.Observable;
 import android.os.Bundle;
@@ -28,9 +28,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.android.architecture.blueprints.todoapp.R;
-import com.example.android.architecture.blueprints.todoapp.databinding.TaskdetailFragBinding;
-import com.example.android.architecture.blueprints.todoapp.util.SnackbarUtils;
+import com.example.googlemvvm.R;
+import com.example.googlemvvm.util.SnackbarUtils;
+import com.example.googlemvvm.databinding.TaskdetailFragBinding;
 
 
 /**

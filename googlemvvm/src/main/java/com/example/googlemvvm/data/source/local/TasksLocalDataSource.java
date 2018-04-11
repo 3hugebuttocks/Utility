@@ -1,4 +1,4 @@
-package com.example.googlemvvm.data.local;
+package com.example.googlemvvm.data.source.local;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.VisibleForTesting;
@@ -18,10 +18,12 @@ public class TasksLocalDataSource implements TasksDataSource{
 
 	private AppExecutors mAppExecutors;
 
-	private TasksLocalDataSource(@NonNull AppExecutors appExecutors, @NonNull TasksDao tasksDao){
-		mAppExecutors = appExecutors;
-		mTasksDao = tasksDao;
-	}
+    // Prevent direct instantiation.
+    private TasksLocalDataSource(@NonNull AppExecutors appExecutors,
+            @NonNull TasksDao tasksDao) {
+        mAppExecutors = appExecutors;
+        mTasksDao = tasksDao;
+    }
 
 	public static TasksLocalDataSource getInstance(@NonNull AppExecutors appExecutors,
 												   @NonNull TasksDao tasksDao){
@@ -35,47 +37,56 @@ public class TasksLocalDataSource implements TasksDataSource{
 		return INSTANCE;
 	}
 
-	@Override
-	public void getTasks(final LoadTasksCallback callback) {
-		Runnable runnable = new Runnable() {
-			@Override
-			public void run() {
-				final List<Task> tasks = mTasksDao.getTasks();
-				mAppExecutors.mainThread().execute(new Runnable() {
-					@Override
-					public void run() {
-						if (tasks.isEmpty()){
-							callback.onDataNotAvailable();
-						}else {
-							callback.onTasksLoaded(tasks);
-						}
-					}
-				});
-			}
-		};
+    /**
+     * Note: {@link LoadTasksCallback#onDataNotAvailable()} is fired if the database doesn't exist
+     * or the table is empty.
+     */
+    @Override
+    public void getTasks(@NonNull final LoadTasksCallback callback) {
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                final List<Task> tasks = mTasksDao.getTasks();
+                mAppExecutors.mainThread().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (tasks.isEmpty()) {
+                            // This will be called if the table is new or just empty.
+                            callback.onDataNotAvailable();
+                        } else {
+                            callback.onTasksLoaded(tasks);
+                        }
+                    }
+                });
+            }
+        };
 
-		mAppExecutors.diskIO().execute(runnable);
-	}
+        mAppExecutors.diskIO().execute(runnable);
+    }
 
-	@Override
-	public void getTask(@NonNull final String taskId, @NonNull final GetTaskCallback callback) {
-		Runnable runnable = new Runnable() {
-			@Override
-			public void run() {
-				final Task task = mTasksDao.getTaskById(taskId);
+    /**
+     * Note: {@link GetTaskCallback#onDataNotAvailable()} is fired if the {@link Task} isn't
+     * found.
+     */
+    @Override
+    public void getTask(@NonNull final String taskId, @NonNull final GetTaskCallback callback) {
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                final Task task = mTasksDao.getTaskById(taskId);
 
-				mAppExecutors.mainThread().execute(new Runnable() {
-					@Override
-					public void run() {
-						if (task != null) {
-							callback.onTaskLoaded(task);
-						} else {
-							callback.onDataNotAvailable();
-						}
-					}
-				});
-			}
-		};
+                mAppExecutors.mainThread().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (task != null) {
+                            callback.onTaskLoaded(task);
+                        } else {
+                            callback.onDataNotAvailable();
+                        }
+                    }
+                });
+            }
+        };
 
 		mAppExecutors.diskIO().execute(runnable);
 	}

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.architecture.blueprints.todoapp.tasks;
+package com.example.googlemvvm.tasks;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.Observable;
@@ -33,14 +33,15 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
-import com.example.android.architecture.blueprints.todoapp.Injection;
-import com.example.android.architecture.blueprints.todoapp.R;
-import com.example.android.architecture.blueprints.todoapp.ScrollChildSwipeRefreshLayout;
-import com.example.android.architecture.blueprints.todoapp.data.Task;
-import com.example.android.architecture.blueprints.todoapp.data.source.TasksRepository;
-import com.example.android.architecture.blueprints.todoapp.databinding.TaskItemBinding;
-import com.example.android.architecture.blueprints.todoapp.databinding.TasksFragBinding;
-import com.example.android.architecture.blueprints.todoapp.util.SnackbarUtils;
+
+import com.example.googlemvvm.Injection;
+import com.example.googlemvvm.R;
+import com.example.googlemvvm.ScrollChildSwipeRefreshLayout;
+import com.example.googlemvvm.data.Task;
+import com.example.googlemvvm.data.source.TasksRepository;
+import com.example.googlemvvm.util.SnackbarUtils;
+import com.example.googlemvvm.databinding.TasksFragBinding;
+import com.example.googlemvvm.databinding.TaskItemBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,6 +78,7 @@ public class TasksFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mTasksFragBinding = TasksFragBinding.inflate(inflater, container, false);
+
 
         mTasksFragBinding.setView(this);
 

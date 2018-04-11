@@ -1,4 +1,4 @@
-package com.example.testapp;
+package com.example.unitestdemo.junit;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -12,12 +12,12 @@ public class CalculorTest {
 	Calculor mCalculor;
 
 	@BeforeClass
-	public void init(){
+	public static void init(){
 
 	}
 
 	@AfterClass
-	public void destroy(){
+	public static void destroy(){
 
 	}
 

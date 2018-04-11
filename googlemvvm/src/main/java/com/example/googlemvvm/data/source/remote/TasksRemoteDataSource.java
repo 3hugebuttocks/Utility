@@ -1,4 +1,4 @@
-package com.example.googlemvvm.data.remote;
+package com.example.googlemvvm.data.source.remote;
 
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -38,38 +38,61 @@ public class TasksRemoteDataSource implements TasksDataSource{
 		addTask("Finish bridge in Tacoma", "Found awesome girders at half the cost!", "18");
 	}
 
-	private static void addTask(String title, String description, String id){
-		Task newTask = new Task(title, description, id);
-		TASKS_SERVICE_DATA.put(newTask.getId(), newTask);
-	}
+    public static TasksRemoteDataSource getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new TasksRemoteDataSource();
+        }
+        return INSTANCE;
+    }
 
-	@Override
-	public void getTasks(final LoadTasksCallback callback) {
-		Handler handler = new Handler();
-		handler.postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				callback.onTasksLoaded(Lists.newArrayList(TASKS_SERVICE_DATA.values()));
-			}
-		}, SERVICE_LATENCY_IN_MILLIS);
-	}
+    // Prevent direct instantiation.
+    private TasksRemoteDataSource() {}
 
-	@Override
-	public void getTask(String taskId, final GetTaskCallback callback) {
-		final Task task = TASKS_SERVICE_DATA.get(taskId);
+    private static void addTask(String title, String description, String id) {
+        Task newTask = new Task(title, description, id);
+        TASKS_SERVICE_DATA.put(newTask.getId(), newTask);
+    }
 
-		new Handler().postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				callback.onTaskLoaded(task);
-			}
-		}, SERVICE_LATENCY_IN_MILLIS);
-	}
+    /**
+     * Note: {@link LoadTasksCallback#onDataNotAvailable()} is never fired. In a real remote data
+     * source implementation, this would be fired if the server can't be contacted or the server
+     * returns an error.
+     */
+    @Override
+    public void getTasks(final @NonNull LoadTasksCallback callback) {
+        // Simulate network by delaying the execution.
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                callback.onTasksLoaded(Lists.newArrayList(TASKS_SERVICE_DATA.values()));
+            }
+        }, SERVICE_LATENCY_IN_MILLIS);
+    }
 
-	@Override
-	public void saveTask(Task task) {
-		TASKS_SERVICE_DATA.put(task.getId(), task);
-	}
+    /**
+     * Note: {@link GetTaskCallback#onDataNotAvailable()} is never fired. In a real remote data
+     * source implementation, this would be fired if the server can't be contacted or the server
+     * returns an error.
+     */
+    @Override
+    public void getTask(@NonNull String taskId, final @NonNull GetTaskCallback callback) {
+        final Task task = TASKS_SERVICE_DATA.get(taskId);
+
+        // Simulate network by delaying the execution.
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                callback.onTaskLoaded(task);
+            }
+        }, SERVICE_LATENCY_IN_MILLIS);
+    }
+
+    @Override
+    public void saveTask(@NonNull Task task) {
+        TASKS_SERVICE_DATA.put(task.getId(), task);
+    }
 
 	@Override
 	public void completeTask(@NonNull Task task) {

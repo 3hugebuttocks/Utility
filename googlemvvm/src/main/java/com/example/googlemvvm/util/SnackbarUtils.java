@@ -1,4 +1,4 @@
-package com.example.android.architecture.blueprints.todoapp.util;
+package com.example.googlemvvm.util;
 
 import android.support.design.widget.Snackbar;
 import android.view.View;

@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/constraintlayoutdemo/constraintlayoutdemo.iml" filepath="$PROJECT_DIR$/constraintlayoutdemo/constraintlayoutdemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/googlemvvm/googlemvvm.iml" filepath="$PROJECT_DIR$/googlemvvm/googlemvvm.iml" />
       <module fileurl="file://$PROJECT_DIR$/sjjapplication/sjjapplication.iml" filepath="$PROJECT_DIR$/sjjapplication/sjjapplication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/unitestdemo/unitestdemo.iml" filepath="$PROJECT_DIR$/unitestdemo/unitestdemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/wyjapplication/wyjapplication.iml" filepath="$PROJECT_DIR$/wyjapplication/wyjapplication.iml" />
     </modules>
   </component>

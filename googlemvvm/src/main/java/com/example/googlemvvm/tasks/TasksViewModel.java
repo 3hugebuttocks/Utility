@@ -16,6 +16,7 @@ import com.example.googlemvvm.data.source.TasksDataSource;
 import com.example.googlemvvm.data.source.TasksRepository;
 import com.example.googlemvvm.taskdetail.TaskDetailActivity;
 import com.example.googlemvvm.util.EspressoIdlingResource;
+import com.example.googlemvvm.BR;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ public class TasksViewModel extends BaseObservable{
 	public final ObservableField<Drawable> noTaskIconRes = new ObservableField<>();
 	public final ObservableBoolean tasksAddViewVisible = new ObservableBoolean();
 
-	final ObservableField<String> snackbarText = new ObservableField<>();
+    final ObservableField<String> snackbarText = new ObservableField<>();
 
 	private TasksFilterType mCurrentFiltering = TasksFilterType.ALL_TASKS;
 
@@ -38,156 +39,179 @@ public class TasksViewModel extends BaseObservable{
 
 	private Context mContext;
 
-	private TasksNavigator mNavigotor;
+    private TasksNavigator mNavigator;
 
-	public TasksViewModel(TasksRepository repository, Context context){
-		mContext = context.getApplicationContext();
-		mTasksRepository = repository;
+    public TasksViewModel(
+            TasksRepository repository,
+            Context context) {
+        mContext = context.getApplicationContext(); // Force use of Application Context.
+        mTasksRepository = repository;
 
-		setFiltering(TasksFilterType.ALL_TASKS);
-	}
+        // Set initial state
+        setFiltering(TasksFilterType.ALL_TASKS);
+    }
 
-	void setNavigator(TasksNavigator navigator){
-		mNavigotor = navigator;
-	}
+    void setNavigator(TasksNavigator navigator) {
+        mNavigator = navigator;
+    }
 
-	void onActivityDestroyed(){
-		mNavigotor = null;
-	}
+    void onActivityDestroyed() {
+        // Clear references to avoid potential memory leaks.
+        mNavigator = null;
+    }
 
-	public void start(){
-		loadTasks(false);
-	}
+    public void start() {
+        loadTasks(false);
+    }
 
-	@Bindable
-	public boolean isEmpty(){
-		return items.isEmpty();
-	}
+    @Bindable
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
 
-	private void loadTasks(boolean forceUpdate) {
-		loadTasks(forceUpdate, true);
-	}
+    public void loadTasks(boolean forceUpdate) {
+        loadTasks(forceUpdate, true);
+    }
 
-	public void cleaCompletedTask(){
-		mTasksRepository.clearCompletedTasks();
-		snackbarText.set(mContext.getString(R.string.completed_tasks_cleared));
-		loadTasks(false, false);
-	}
+    /**
+     * Sets the current task filtering type.
+     *
+     * @param requestType Can be {@link TasksFilterType#ALL_TASKS},
+     *                    {@link TasksFilterType#COMPLETED_TASKS}, or
+     *                    {@link TasksFilterType#ACTIVE_TASKS}
+     */
+    public void setFiltering(TasksFilterType requestType) {
+        mCurrentFiltering = requestType;
 
-	public String getSnackbarText(){
-		return snackbarText.get();
-	}
+        // Depending on the filter type, set the filtering label, icon drawables, etc.
+        switch (requestType) {
+            case ALL_TASKS:
+                currentFilteringLabel.set(mContext.getString(R.string.label_all));
+                noTasksLabel.set(mContext.getResources().getString(R.string.no_tasks_all));
+                noTaskIconRes.set(mContext.getResources().getDrawable(
+                        R.drawable.ic_assignment_turned_in_24dp));
+                tasksAddViewVisible.set(true);
+                break;
+            case ACTIVE_TASKS:
+                currentFilteringLabel.set(mContext.getString(R.string.label_active));
+                noTasksLabel.set(mContext.getResources().getString(R.string.no_tasks_active));
+                noTaskIconRes.set(mContext.getResources().getDrawable(
+                        R.drawable.ic_check_circle_24dp));
+                tasksAddViewVisible.set(false);
+                break;
+            case COMPLETED_TASKS:
+                currentFilteringLabel.set(mContext.getString(R.string.label_completed));
+                noTasksLabel.set(mContext.getResources().getString(R.string.no_tasks_completed));
+                noTaskIconRes.set(mContext.getResources().getDrawable(
+                        R.drawable.ic_verified_user_24dp));
+                tasksAddViewVisible.set(false);
+                break;
+        }
+    }
 
-	public void addNewTask(){
-		if (mNavigotor != null){
-			mNavigotor.addNewTask();
-		}
-	}
+    public void clearCompletedTasks() {
+        mTasksRepository.clearCompletedTasks();
+        snackbarText.set(mContext.getString(R.string.completed_tasks_cleared));
+        loadTasks(false, false);
+    }
 
-	void handleActivityResult(int requestCode, int resultCode){
-		if (AddEditTaskActivity.REQUEST_CODE == requestCode) {
-			switch (resultCode) {
-				case TaskDetailActivity.EDIT_RESULT_OK:
-					snackbarText.set(
-							mContext.getString(R.string.successfully_saved_task_message));
-					break;
-				case AddEditTaskActivity.ADD_EDIT_RESULT_OK:
-					snackbarText.set(
-							mContext.getString(R.string.successfully_added_task_message));
-					break;
-				case TaskDetailActivity.DELETE_RESULT_OK:
-					snackbarText.set(
-							mContext.getString(R.string.successfully_deleted_task_message));
-					break;
-			}
-		}
-	}
+    public String getSnackbarText() {
+        return snackbarText.get();
+    }
 
-	private void loadTasks(boolean forceUpdate, final boolean showLoadingUI){
-		if (showLoadingUI){
-			dataLoading.set(true);
-		}
-		if (forceUpdate){
-			mTasksRepository.refreshTasks();
-		}
+    /**
+     * Called by the Data Binding library and the FAB's click listener.
+     */
+    public void addNewTask() {
+        if (mNavigator != null) {
+            mNavigator.addNewTask();
+        }
+    }
 
-		EspressoIdlingResource.increment();
+    void handleActivityResult(int requestCode, int resultCode) {
+        if (AddEditTaskActivity.REQUEST_CODE == requestCode) {
+            switch (resultCode) {
+                case TaskDetailActivity.EDIT_RESULT_OK:
+                    snackbarText.set(
+                            mContext.getString(R.string.successfully_saved_task_message));
+                    break;
+                case AddEditTaskActivity.ADD_EDIT_RESULT_OK:
+                    snackbarText.set(
+                            mContext.getString(R.string.successfully_added_task_message));
+                    break;
+                case TaskDetailActivity.DELETE_RESULT_OK:
+                    snackbarText.set(
+                            mContext.getString(R.string.successfully_deleted_task_message));
+                    break;
+            }
+        }
+    }
 
-		mTasksRepository.getTasks(new TasksDataSource.LoadTasksCallback() {
-			@Override
-			public void onTasksLoaded(List<Task> tasks) {
-				List<Task> tasksToShow = new ArrayList<>();
+    /**
+     * @param forceUpdate   Pass in true to refresh the data in the {@link TasksDataSource}
+     * @param showLoadingUI Pass in true to display a loading icon in the UI
+     */
+    private void loadTasks(boolean forceUpdate, final boolean showLoadingUI) {
+        if (showLoadingUI) {
+            dataLoading.set(true);
+        }
+        if (forceUpdate) {
 
-				// This callback may be called twice, once for the cache and once for loading
-				// the data from the server API, so we check before decrementing, otherwise
-				// it throws "Counter has been corrupted!" exception.
-				if (!EspressoIdlingResource.getIdlingResource().isIdleNow()){
-					EspressoIdlingResource.decrement();
-				}
+            mTasksRepository.refreshTasks();
+        }
 
-				for (Task task : tasks) {
-					switch (mCurrentFiltering) {
-						case ALL_TASKS:
-							tasksToShow.add(task);
-							break;
-						case ACTIVE_TASKS:
-							if (task.isActive()) {
-								tasksToShow.add(task);
-							}
-							break;
-						case COMPLETED_TASKS:
-							if (task.isCompleted()) {
-								tasksToShow.add(task);
-							}
-							break;
-						default:
-							tasksToShow.add(task);
-							break;
-					}
-				}
+        // The network request might be handled in a different thread so make sure Espresso knows
+        // that the app is busy until the response is handled.
+        EspressoIdlingResource.increment(); // App is busy until further notice
 
-				if (showLoadingUI){
-					dataLoading.set(false);
-				}
-				mIsDataLoadingError.set(false);
+        mTasksRepository.getTasks(new TasksDataSource.LoadTasksCallback() {
+            @Override
+            public void onTasksLoaded(List<Task> tasks) {
+                List<Task> tasksToShow = new ArrayList<Task>();
 
-				items.clear();
-				items.addAll(tasksToShow);
-				notifyPropertyChanged(BR.empty);
-			}
+                // This callback may be called twice, once for the cache and once for loading
+                // the data from the server API, so we check before decrementing, otherwise
+                // it throws "Counter has been corrupted!" exception.
+                if (!EspressoIdlingResource.getIdlingResource().isIdleNow()) {
+                    EspressoIdlingResource.decrement(); // Set app as idle.
+                }
 
-			@Override
-			public void onDataNotAvailable() {
-				mIsDataLoadingError.set(true);
-			}
-		});
-	}
+                // We filter the tasks based on the requestType
+                for (Task task : tasks) {
+                    switch (mCurrentFiltering) {
+                        case ALL_TASKS:
+                            tasksToShow.add(task);
+                            break;
+                        case ACTIVE_TASKS:
+                            if (task.isActive()) {
+                                tasksToShow.add(task);
+                            }
+                            break;
+                        case COMPLETED_TASKS:
+                            if (task.isCompleted()) {
+                                tasksToShow.add(task);
+                            }
+                            break;
+                        default:
+                            tasksToShow.add(task);
+                            break;
+                    }
+                }
+                if (showLoadingUI) {
+                    dataLoading.set(false);
+                }
+                mIsDataLoadingError.set(false);
 
-	private void setFiltering(TasksFilterType requestType) {
-		mCurrentFiltering = requestType;
+                items.clear();
+                items.addAll(tasksToShow);
+                notifyPropertyChanged(BR.empty); // It's a @Bindable so update manually
+            }
 
-		switch (requestType){
-			case ALL_TASKS:
-				currentFilteringLabel.set(mContext.getString(R.string.label_all));
-				noTasksLabel.set(mContext.getResources().getString(R.string.no_tasks_all));
-				noTaskIconRes.set(mContext.getResources().getDrawable(
-						R.drawable.ic_assignment_turned_in_24dp));
-				tasksAddViewVisible.set(true);
-				break;
-			case ACTIVE_TASKS:
-				currentFilteringLabel.set(mContext.getString(R.string.label_active));
-				noTasksLabel.set(mContext.getResources().getString(R.string.no_tasks_active));
-				noTaskIconRes.set(mContext.getResources().getDrawable(
-						R.drawable.ic_check_circle_24dp));
-				tasksAddViewVisible.set(false);
-				break;
-			case COMPLETED_TASKS:
-				currentFilteringLabel.set(mContext.getString(R.string.label_completed));
-				noTasksLabel.set(mContext.getResources().getString(R.string.no_tasks_completed));
-				noTaskIconRes.set(mContext.getResources().getDrawable(
-						R.drawable.ic_verified_user_24dp));
-				tasksAddViewVisible.set(false);
-				break;
-		}
-	}
+            @Override
+            public void onDataNotAvailable() {
+                mIsDataLoadingError.set(true);
+            }
+        });
+    }
+
 }

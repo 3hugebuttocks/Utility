@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.architecture.blueprints.todoapp.statistics;
+package com.example.googlemvvm.statistics;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -24,8 +24,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.android.architecture.blueprints.todoapp.R;
-import com.example.android.architecture.blueprints.todoapp.databinding.StatisticsFragBinding;
+import com.example.googlemvvm.R;
+import com.example.googlemvvm.databinding.StatisticsFragBinding;
 
 /**
  * Main UI for the statistics screen.

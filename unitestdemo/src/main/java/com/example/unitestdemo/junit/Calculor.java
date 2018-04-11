@@ -1,4 +1,4 @@
-package com.example.testapp;
+package com.example.unitestdemo.junit;
 
 public class Calculor {
 	public int add(int one, int another) {

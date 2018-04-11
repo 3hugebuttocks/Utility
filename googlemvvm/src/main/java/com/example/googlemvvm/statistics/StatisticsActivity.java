@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.architecture.blueprints.todoapp.statistics;
+package com.example.googlemvvm.statistics;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -27,10 +27,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.example.android.architecture.blueprints.todoapp.Injection;
-import com.example.android.architecture.blueprints.todoapp.R;
-import com.example.android.architecture.blueprints.todoapp.ViewModelHolder;
-import com.example.android.architecture.blueprints.todoapp.util.ActivityUtils;
+import com.example.googlemvvm.Injection;
+import com.example.googlemvvm.R;
+import com.example.googlemvvm.ViewModelHolder;
+import com.example.googlemvvm.util.ActivityUtils;
 
 /**
  * Show statistics for tasks.
@@ -79,9 +79,9 @@ public class StatisticsActivity extends AppCompatActivity {
                 (ViewModelHolder<StatisticsViewModel>) getSupportFragmentManager()
                         .findFragmentByTag(STATS_VIEWMODEL_TAG);
 
-        if (retainedViewModel != null && retainedViewModel.getViewmodel() != null) {
+        if (retainedViewModel != null && retainedViewModel.getViewModel() != null) {
             // If the model was retained, return it.
-            return retainedViewModel.getViewmodel();
+            return retainedViewModel.getViewModel();
         } else {
             // There is no ViewModel yet, create it.
             StatisticsViewModel viewModel = new StatisticsViewModel(getApplicationContext(),

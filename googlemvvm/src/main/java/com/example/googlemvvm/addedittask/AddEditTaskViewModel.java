@@ -46,23 +46,25 @@ public class AddEditTaskViewModel implements TasksDataSource.GetTaskCallback{
 		mAddEditTaskNavigator = null;
 	}
 
-	public void start(String taskId){
-		if (dataLoading.get()){
-			return;
-		}
-		if (taskId == null) {
-			// No need to populate, it's a new task
-			mIsNewTask = true;
-			return;
-		}
-		if (mIsDataLoaded) {
-			// No need to populate, already have data.
-			return;
-		}
-		mIsNewTask = false;
-		dataLoading.set(true);
-		mTasksRepository.getTask(taskId, this);
-	}
+    public void start(String taskId) {
+        if (dataLoading.get()) {
+            // Already loading, ignore.
+            return;
+        }
+        mTaskId = taskId;
+        if (taskId == null) {
+            // No need to populate, it's a new task
+            mIsNewTask = true;
+            return;
+        }
+        if (mIsDataLoaded) {
+            // No need to populate, already have data.
+            return;
+        }
+        mIsNewTask = false;
+        dataLoading.set(true);
+        mTasksRepository.getTask(taskId, this);
+    }
 
 	@Override
 	public void onTaskLoaded(Task task) {

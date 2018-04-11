@@ -45,7 +45,9 @@ ext{
             espresso: '2.2.2',
             glide: '4.6.1',
             constraintlayout: '1.1.0-beta1',
-            room: '1.0.0'
+            room: '1.0.0',
+            robolectric: '3.8',
+            junit: '4.12'
     ]
 
     supportDependencies = [
@@ -100,7 +102,11 @@ ext{
                     'runtime': "android.arch.persistence.room:runtime:${versions.room}",
                     'compiler': "android.arch.persistence.room:compiler:${versions.room}"
             ],
-            'guava': 'com.google.guava:guava:24.1-android'
-
+            'guava': 'com.google.guava:guava:24.1-android',
+            'test': [
+                    'robolectric': "org.robolectric:robolectric:${versions.robolectric}",
+                    'mockito': "org.mockito:mockito-core:2.+",
+                    'junit': "junit:junit:${versions.junit}"
+            ]
     ]
 }

@@ -22,10 +22,10 @@
 
         <variable
             name="viewmodel"
-            type="com.example.android.architecture.blueprints.todoapp.taskdetail.TaskDetailViewModel" />
+            type="com.example.googlemvvm.taskdetail.TaskDetailViewModel" />
     </data>
 
-    <com.example.android.architecture.blueprints.todoapp.ScrollChildSwipeRefreshLayout
+    <com.example.googlemvvm.ScrollChildSwipeRefreshLayout
         android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -95,5 +95,5 @@
 
         </RelativeLayout>
     </LinearLayout>
-    </com.example.android.architecture.blueprints.todoapp.ScrollChildSwipeRefreshLayout>
+    </com.example.googlemvvm.ScrollChildSwipeRefreshLayout>
 </layout>
