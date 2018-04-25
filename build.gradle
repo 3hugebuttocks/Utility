@@ -8,7 +8,8 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.0'
-        
+
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -37,7 +38,8 @@ ext{
             minSdk: 19,
             targetSdk: 25,
             supportLibrary: '27.0.2',
-            dagger: '1.2.5',
+            dagger2: '2.15',
+            daggerandroid: '2.11',
             okhttp: '3.8.1',
             retrofit: '2.4.0',
             butterKnife: '8.8.1',
@@ -60,9 +62,12 @@ ext{
                     'constraintlayout': "com.android.support.constraint:constraint-layout:${versions.constraintlayout}",
                     'cardview': "com.android.support:cardview-v7:${versions.supportLibrary}"
             ],
-            'dagger': [
-                    'runtime': "com.squareup.dagger:dagger:${versions.dagger}",
-                    'compiler': "com.squareup.dagger:dagger-compiler:${versions.dagger}",
+            'dagger2': [
+                    'runtime': "com.google.dagger:dagger:${versions.dagger2}",
+                    'compiler': "com.google.dagger:dagger-compiler:${versions.dagger2}",
+                    'androidsupport': "com.google.dagger:dagger-android-support:${versions.daggerandroid}",
+                    'androidcompiler': "com.google.dagger:dagger-android-processor:${versions.daggerandroid}",
+                    "androidruntime": "com.google.dagger:dagger-android:${versions.daggerandroid}"
             ],
             'okhttp': [
                     'core': "com.squareup.okhttp3:okhttp:${versions.okhttp}",

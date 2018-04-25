@@ -31,7 +31,7 @@ public class CalculorTest {
 		mCalculor = null;
 	}
 
-	@Test
+	@Test(timeout = 1000)//如果一个测试用例执行的毫秒数超过了指定的参数值，那么 Junit 将自动将它标记为失败。
 	public void testAdd(){
 		int sum = mCalculor.add(5,6);
 		Assert.assertEquals(11, sum);
