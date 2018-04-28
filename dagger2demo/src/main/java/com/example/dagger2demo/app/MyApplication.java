@@ -1,45 +1,18 @@
 package com.example.dagger2demo.app;
 
-import android.app.Activity;
-import android.app.Application;
-import android.support.v4.app.Fragment;
-
-import javax.inject.Inject;
+import com.example.dagger2demo.di.DaggerAppComponent;
 
 import dagger.android.AndroidInjector;
-import dagger.android.DispatchingAndroidInjector;
-import dagger.android.HasActivityInjector;
-import dagger.android.support.HasSupportFragmentInjector;
+import dagger.android.DaggerApplication;
 
-public class MyApplication extends Application implements HasActivityInjector/*, HasSupportFragmentInjector*/{
-	@Inject
-	DispatchingAndroidInjector<Activity> dispatchingActivityAndroidInjector;
-
-	/*@Inject
-	DispatchingAndroidInjector<Fragment> dispatchingFragmentAndroidInjector;*/
-
+public class MyApplication extends DaggerApplication{
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		inject();
-	}
-
-	private void inject(){
-		AppComponent appComponent = DaggerAppComponent.builder()
-				.appModule(new AppModule(this))
-				.build();
-
-		appComponent.inject(this);
-		ComponentHolder.setAppComponent(appComponent);
 	}
 
 	@Override
-	public AndroidInjector<Activity> activityInjector() {
-		return dispatchingActivityAndroidInjector;
+	protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
+		return DaggerAppComponent.builder().application(this).builder();
 	}
-
-	/*@Override
-	public AndroidInjector<Fragment> supportFragmentInjector() {
-		return dispatchingFragmentAndroidInjector;
-	}*/
 }

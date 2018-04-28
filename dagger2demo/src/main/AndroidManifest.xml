@@ -10,20 +10,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".tasks.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".scope.FirstActivity" />
-        <activity android:name=".scope.SecondActivity" />
-        <activity android:name=".scopetest.ScopeActivity" />
-        <activity android:name=".mvp.LoginActivity" />
-        <activity android:name=".producer.AsyActivity" />
-        <activity android:name=".bind.BindActivity" />
-        <activity android:name=".multibindings.MultiBindingActivity"></activity>
+        <activity android:name=".practice.scopetest.ScopeActivity" />
+        <activity android:name=".practice.producer.AsyActivity" />
+        <activity android:name=".practice.multibindings.MultiBindingActivity"></activity>
     </application>
 
 </manifest>
