@@ -49,7 +49,10 @@ ext{
             constraintlayout: '1.1.0-beta1',
             room: '1.0.0',
             robolectric: '3.8',
-            junit: '4.12'
+            junit: '4.12',
+            gson: '2.7',
+            okio: '1.13.0',
+            picasso: '2.5.2'
     ]
 
     supportDependencies = [
@@ -73,13 +76,13 @@ ext{
                     'core': "com.squareup.okhttp3:okhttp:${versions.okhttp}",
                     'logger': "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}",
             ],
-            'okio': 'com.squareup.okio:okio:1.13.0',
-            'picasso': 'com.squareup.picasso:picasso:2.5.2',
             'retrofit': [
                     'core': "com.squareup.retrofit2:retrofit:${versions.retrofit}",
                     'mock': "com.squareup.retrofit2:retrofit-mock:${versions.retrofit}",
                     'moshi': "com.squareup.retrofit2:converter-moshi:${versions.retrofit}",
+                    'gson' : "com.squareup.retrofit2:converter-gson:${versions.retrofit}",
                     'rxjava': "com.squareup.retrofit2:adapter-rxjava:${versions.retrofit}",
+                    'rxjava2': "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit}"
             ],
             'leakCanary': [
                     'real': "com.squareup.leakcanary:leakcanary-android:${versions.leakCanary}",
@@ -90,7 +93,6 @@ ext{
                       'android': 'io.reactivex.rxjava2:rxandroid:2.0.2',
                       'preferences': 'com.f2prateek.rx.preferences:rx-preferences:2.0.0-RC3',
             ],
-            'timber': 'com.jakewharton.timber:timber:4.7.0',
             'bugly':[
                     'sdk': 'com.tencent.bugly:crashreport:latest.release',
                     'ndk': 'com.tencent.bugly:nativecrashreport:latest.release',
@@ -107,12 +109,16 @@ ext{
                     'runtime': "android.arch.persistence.room:runtime:${versions.room}",
                     'compiler': "android.arch.persistence.room:compiler:${versions.room}"
             ],
-            'guava': 'com.google.guava:guava:24.1-android',
             'test': [
                     'robolectric': "org.robolectric:robolectric:${versions.robolectric}",
                     'mockito': "org.mockito:mockito-core:2.+",
                     'mockito-android': 'org.mockito:mockito-android:2.+',
                     'junit': "junit:junit:${versions.junit}"
-            ]
+            ],
+            'guava': "com.google.guava:guava:24.1-android",
+            'gson' : "com.google.code.gson:gson:${versions.gson}",
+            'timber': "com.jakewharton.timber:timber:4.7.0",
+            'okio': "com.squareup.okio:okio:${versions.okio}",
+            'picasso': "com.squareup.picasso:picasso:${versions.picasso}",
     ]
 }

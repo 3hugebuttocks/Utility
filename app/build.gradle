@@ -100,5 +100,9 @@ dependencies {
     implementation supportDependencies.support.recyclerView
     implementation supportDependencies.glide.runtime
     annotationProcessor supportDependencies.glide.compiler
+    implementation supportDependencies.gson
+    implementation supportDependencies.rx.android
+    implementation supportDependencies.retrofit.gson
+    implementation supportDependencies.retrofit.rxjava2
 }
 
