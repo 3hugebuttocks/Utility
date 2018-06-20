@@ -11,9 +11,8 @@
       <module fileurl="file://$PROJECT_DIR$/googlemvvm/googlemvvm.iml" filepath="$PROJECT_DIR$/googlemvvm/googlemvvm.iml" />
       <module fileurl="file://$PROJECT_DIR$/guavademo/guavademo.iml" filepath="$PROJECT_DIR$/guavademo/guavademo.iml" />
       <module fileurl="file://$PROJECT_DIR$/okhttpdemo/okhttpdemo.iml" filepath="$PROJECT_DIR$/okhttpdemo/okhttpdemo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sjjapplication/sjjapplication.iml" filepath="$PROJECT_DIR$/sjjapplication/sjjapplication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rxlearn/rxlearn.iml" filepath="$PROJECT_DIR$/rxlearn/rxlearn.iml" />
       <module fileurl="file://$PROJECT_DIR$/unitestdemo/unitestdemo.iml" filepath="$PROJECT_DIR$/unitestdemo/unitestdemo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/wyjapplication/wyjapplication.iml" filepath="$PROJECT_DIR$/wyjapplication/wyjapplication.iml" />
     </modules>
   </component>
 </project>
