@@ -1,6 +1,5 @@
 package com.example.utility.rx;
 
-import com.ecarx.multimedia.utils.T;
 
 import io.reactivex.ObservableTransformer;
 import io.reactivex.Scheduler;

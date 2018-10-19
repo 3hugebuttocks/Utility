@@ -1,1 +1,1 @@
-include ':app', ':common', ':constraintlayoutdemo', ':googlemvvm', ':unitestdemo', ':guavademo', ':dagger2demo', ':annotationtest', ':okhttpdemo', ':rxlearn'
+include ':app', ':common', ':constraintlayoutdemo', ':googlemvvm', ':unitestdemo', ':guavademo', ':dagger2demo', ':annotationtest', ':okhttpdemo', ':rxlearn', ':MixTest'

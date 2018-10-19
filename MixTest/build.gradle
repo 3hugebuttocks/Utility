@@ -1,0 +1,9 @@
+apply plugin: 'java-library'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation supportDependencies.retrofit.rxjava2
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"

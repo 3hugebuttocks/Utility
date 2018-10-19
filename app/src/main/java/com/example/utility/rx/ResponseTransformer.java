@@ -1,7 +1,5 @@
 package com.example.utility.rx;
 
-import com.ecarx.multimedia.entity.onlinemedia.Result;
-import com.ecarx.multimedia.utils.T;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
